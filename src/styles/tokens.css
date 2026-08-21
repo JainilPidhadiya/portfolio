@@ -1,0 +1,43 @@
+:root {
+  /* Base Colors - Deep rich dark theme */
+  --color-background: #020617; /* Slate 950 */
+  --color-surface: rgba(15, 23, 42, 0.4); /* Slate 900 translucent */
+  --color-surface-raised: rgba(30, 41, 59, 0.6); /* Slate 800 translucent */
+
+  /* Text Colors */
+  --color-text-primary: #f8fafc; /* Slate 50 */
+  --color-text-secondary: #94a3b8; /* Slate 400 */
+  --color-text-muted: #475569; /* Slate 600 */
+
+  /* Accent Colors - Vibrant for a product feel */
+  --color-accent-primary: #38bdf8; /* Sky 400 */
+  --color-accent-strong: #0ea5e9; /* Sky 500 */
+  --color-accent-purple: #8b5cf6; /* Violet 500 */
+  --color-accent-subtle: rgba(56, 189, 248, 0.1);
+
+  /* System Colors */
+  --color-border: rgba(148, 163, 184, 0.15); /* Slate 400 at 15% */
+  --color-border-hover: rgba(148, 163, 184, 0.3);
+  
+  --color-focus: #38bdf8;
+  --color-success: #10b981; /* Emerald 500 */
+  --color-error: #f43f5e; /* Rose 500 */
+
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+  --font-size-display: clamp(3.5rem, 10vw, 9rem);
+  --font-size-display-sm: clamp(2.5rem, 8vw, 6rem);
+
+  /* Motion */
+  --motion-fast: 150ms;
+  --motion-base: 300ms;
+  --motion-slow: 500ms;
+}

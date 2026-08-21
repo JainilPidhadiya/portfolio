@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import './tokens.css';
+@import './animations.css';
+@config "../../tailwind.config.js";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Subtle radial gradient background for depth */
+    background-image: radial-gradient(circle at top right, rgba(14, 165, 233, 0.05), transparent 40%),
+                      radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.05), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700; /* Bolder headings */
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  h1 {
+    font-size: var(--font-size-display);
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    font-size: var(--font-size-display-sm);
+  }
+
+  h3 {
+    font-size: var(--font-size-4xl);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  ::selection {
+    background-color: var(--color-accent-strong);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .text-metadata {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#020617];
+  }
+  
+  .glass-panel {
+    @apply bg-surface backdrop-blur-xl border border-border;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-accent-purple;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
