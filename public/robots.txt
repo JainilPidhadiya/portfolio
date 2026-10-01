@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jainilpidhadiya.com/sitemap.xml
+Sitemap: https://jainilpidhadiya.vercel.app/sitemap.xml

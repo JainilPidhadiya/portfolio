@@ -14,7 +14,7 @@ export const identity = {
   linkedin: "https://www.linkedin.com/in/jainil-pidhadiya-09332725b/",
   
   // Production URL for SEO, Sitemap, and Canonical links (Replace with actual domain when deploying)
-  siteUrl: "https://jainilpidhadiya.com",
+  siteUrl: "https://jainilpidhadiya.vercel.app",
 
   location: "India",
   coords: {
