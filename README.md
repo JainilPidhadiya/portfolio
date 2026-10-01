@@ -1,16 +1,28 @@
-# React + Vite
+# Jainil Pidhadiya — Full Stack Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A premium, modern portfolio built with **React**, **Vite**, and **Tailwind CSS**. 
+Designed with a sleek "Developer Operating System" aesthetic featuring a dark navy and cyan identity system.
 
-Currently, two official plugins are available:
+## Features
+- **High-Performance SPA**: Built on Vite for lightning-fast HMR and optimized production builds.
+- **Custom Design System**: Utilizes a fully customized CSS token system for robust theming.
+- **Fully Responsive**: Smooth, premium mobile and desktop experience.
+- **SEO Optimized**: Fully equipped with Meta tags, Open Graph cards, and structured JSON-LD data.
+- **Production Ready**: Optimized assets, accessibility checks, and routing for fast deployment on platforms like Netlify or Vercel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Local Development
 
-## React Compiler
+```bash
+# Install dependencies
+npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Start development server
+npm run dev
+```
 
-## Expanding the Oxlint configuration
+## Production Build
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+# Build the project for production
+npm run build
+```
