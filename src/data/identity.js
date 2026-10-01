@@ -12,6 +12,10 @@ export const identity = {
   email: "jainilpidhadiya@gmail.com",
   github: "https://github.com/Jainil05",
   linkedin: "https://www.linkedin.com/in/jainil-pidhadiya-09332725b/",
+  
+  // Production URL for SEO, Sitemap, and Canonical links (Replace with actual domain when deploying)
+  siteUrl: "https://jainilpidhadiya.com",
+
   location: "India",
   coords: {
     lat: "21.17° N",
