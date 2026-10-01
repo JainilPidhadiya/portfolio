@@ -1,116 +1,301 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '../components/ui/Button';
+import { useCallback } from 'react';
+import { SectionLabel } from '../components/ui/SectionLabel';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
-export function Hero({ id }) {
+import { identity } from '../data/identity';
+
+// System status data - easily editable
+const SYSTEM_INFO = {
+  currentFocus: "Full Stack Development",
+  stack: "React · Node · MongoDB",
+  buildStatus: "92%",
+  asciiProgress: "████████████░",
+};
+
+export function Hero({ id = 'intro' }) {
   const prefersReducedMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Smooth scroll handler for CTA
+  const handleScrollToWork = useCallback((e) => {
+    e.preventDefault();
+    const element = document.getElementById('work');
+    if (element) {
+      const navOffset = 72;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = Math.max(0, elementPosition - navOffset);
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-  };
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      });
+
+      if (window.history.pushState) {
+        window.history.pushState(null, '', '#work');
+      }
+    }
+  }, [prefersReducedMotion]);
 
   return (
-    <section id={id} className="min-h-screen relative flex items-center pt-24 pb-16 overflow-hidden">
-      
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-strong/20 rounded-full blur-[120px] pointer-events-none opacity-50" />
+    <section
+      id={id}
+      className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center overflow-hidden pt-[104px] pb-16 lg:pt-[120px] lg:pb-24 border-b border-border/60"
+    >
+      {/* Background: Subtle Technical Grid with Edge Mask */}
+      <div 
+        className="absolute inset-0 bg-tech-grid opacity-70 pointer-events-none select-none [mask-image:radial-gradient(ellipse_at_center,rgba(0,0,0,0.3)_20%,rgba(0,0,0,1)_100%)]" 
+        aria-hidden="true" 
+      />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full z-10 grid lg:grid-cols-2 gap-16 items-center">
-        
-        {/* Left Content */}
-        <motion.div 
-          className="flex flex-col items-start"
-          initial="hidden"
-          animate={mounted ? "show" : "hidden"}
-          variants={{
-            show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
-          }}
-        >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel mb-8 border-accent-strong/30">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-success"></span>
-            </span>
-            <span className="text-sm font-semibold tracking-wide">Available for new challenges</span>
-          </motion.div>
+      {/* Subtle Cyan & Blue Radial Ambient Glows */}
+      <div 
+        className="absolute -top-32 -left-32 w-80 h-80 md:w-[28rem] md:h-[28rem] bg-cyan/[0.04] rounded-full blur-3xl pointer-events-none select-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute -bottom-32 right-0 w-80 h-80 md:w-[32rem] md:h-[32rem] bg-blue/[0.04] rounded-full blur-3xl pointer-events-none select-none" 
+        aria-hidden="true" 
+      />
 
-          <motion.h1 variants={fadeUp} className="text-5xl sm:text-6xl md:text-7xl lg:text-display font-black leading-[1.1] mb-6">
-            Idea to <br/>
-            <span className="text-gradient">Product.</span>
-          </motion.h1>
+      {/* Top Subtle Technical Corner Tag (Desktop) */}
+      <div 
+        className="absolute top-24 right-8 lg:right-16 hidden md:flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-text-muted/70 uppercase select-none"
+        aria-hidden="true"
+      >
+        <span>{identity.signatureMark}</span>
+        <span className="text-cyan/50">//</span>
+        <span>INITIALIZE</span>
+      </div>
 
-          <motion.h2 variants={fadeUp} className="text-xl md:text-2xl text-secondary max-w-lg mb-10 leading-relaxed font-medium">
-            I am <strong className="text-primary font-bold">Jainil Pidhadiya</strong>. A Full Stack Developer engineering complete digital systems from interface to database.
-          </motion.h2>
-
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-            <Button href="#projects" variant="primary">
-              Explore Products
-            </Button>
-            <Button href="#contact" variant="secondary">
-              Let's Connect
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Visual System */}
-        <motion.div 
-          className="hidden lg:flex relative h-[600px] w-full items-center justify-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          {/* Central Line */}
-          <div className="absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-transparent via-accent-strong/50 to-transparent" />
-
-          <div className="relative w-full max-w-md space-y-8">
+      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-center">
+          
+          {/* ========================================================
+              LEFT COLUMN: Editorial Typography & Core Information
+             ======================================================== */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
             
-            {/* Interface Node */}
-            <motion.div 
-              className="glass-panel p-6 rounded-2xl relative ml-auto mr-12 w-64"
-              animate={prefersReducedMotion ? {} : { y: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            {/* 1. Small Technical Label */}
+            <div 
+              className="mb-4 animate-hero-up"
+              style={{ animationDelay: '50ms' }}
             >
-              <div className="absolute right-[-3.5rem] top-1/2 -translate-y-1/2 w-12 h-0.5 bg-accent-strong/50" />
-              <div className="absolute right-[-4rem] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-accent-primary shadow-[0_0_15px_rgba(56,189,248,0.8)]" />
-              <h3 className="text-sm font-bold text-accent-primary mb-1 uppercase tracking-widest">Interface</h3>
-              <p className="text-xl font-bold">React.js</p>
-            </motion.div>
+              <SectionLabel 
+                label="01 / INTRO" 
+                indicator="cyan" 
+                className="text-cyan"
+              />
+            </div>
 
-            {/* Logic Node */}
-            <motion.div 
-              className="glass-panel p-6 rounded-2xl relative mr-auto ml-12 w-64"
-              animate={prefersReducedMotion ? {} : { y: [0, 10, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            {/* 2. Eyebrow */}
+            <div 
+              className="mb-6 animate-hero-up"
+              style={{ animationDelay: '120ms' }}
             >
-              <div className="absolute left-[-3.5rem] top-1/2 -translate-y-1/2 w-12 h-0.5 bg-accent-purple/50" />
-              <div className="absolute left-[-4rem] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-accent-purple shadow-[0_0_15px_rgba(139,92,246,0.8)]" />
-              <h3 className="text-sm font-bold text-accent-purple mb-1 uppercase tracking-widest">Logic</h3>
-              <p className="text-xl font-bold">Node + Express</p>
-            </motion.div>
+              <p className="font-mono text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-text-muted">
+                FULL STACK DEVELOPER <span className="text-cyan/60">/</span> PRODUCT BUILDER
+              </p>
+            </div>
 
-            {/* Data Node */}
-            <motion.div 
-              className="glass-panel p-6 rounded-2xl relative ml-auto mr-12 w-64"
-              animate={prefersReducedMotion ? {} : { y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            {/* 3. Main Editorial Headline (H1) */}
+            <h1 className="font-display font-black tracking-[-0.035em] text-text-primary text-[2.75rem] sm:text-6xl md:text-7xl lg:text-7xl xl:text-[5.25rem] leading-[0.95] mb-8 select-none break-words">
+              <span 
+                className="block animate-hero-up"
+                style={{ animationDelay: '180ms' }}
+              >
+                BUILDING
+              </span>
+              <span 
+                className="block animate-hero-up"
+                style={{ animationDelay: '250ms' }}
+              >
+                DIGITAL
+              </span>
+              <span 
+                className="block text-text-primary animate-hero-up"
+                style={{ animationDelay: '320ms' }}
+              >
+                SYSTEMS<span className="text-cyan">.</span>
+              </span>
+            </h1>
+
+            {/* 4. Description */}
+            <p 
+              className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed font-normal max-w-xl mb-10 animate-hero-up"
+              style={{ animationDelay: '400ms' }}
             >
-              <div className="absolute right-[-3.5rem] top-1/2 -translate-y-1/2 w-12 h-0.5 bg-success/50" />
-              <div className="absolute right-[-4rem] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-success shadow-[0_0_15px_rgba(16,185,129,0.8)]" />
-              <h3 className="text-sm font-bold text-success mb-1 uppercase tracking-widest">Data</h3>
-              <p className="text-xl font-bold">MongoDB / MySQL</p>
-            </motion.div>
+              {identity.tagline}
+            </p>
+
+            {/* 5. CTA Buttons */}
+            <div 
+              className="flex flex-wrap items-center gap-4 w-full animate-hero-up"
+              style={{ animationDelay: '480ms' }}
+            >
+              {/* Primary CTA */}
+              <a
+                href="#work"
+                onClick={handleScrollToWork}
+                className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-sm bg-card text-text-primary border border-cyan/60 font-mono text-xs font-bold tracking-[0.14em] uppercase transition-all duration-200 hover:border-cyan hover:shadow-glow-cyan hover:-translate-y-0.5 hover:translate-x-0.5 focus-ring select-none"
+              >
+                <span>EXPLORE MY WORK</span>
+                <span className="text-cyan transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
+                  →
+                </span>
+              </a>
+
+              {/* Resume CTA */}
+              {identity.resumeUrl && (
+                <a
+                  href={identity.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-transparent border border-border text-text-secondary font-mono text-xs font-bold tracking-[0.14em] uppercase transition-all duration-200 hover:text-text-primary hover:border-cyan/50 hover:bg-cyan/5 focus-ring select-none"
+                >
+                  <span>RESUME</span>
+                  <span className="text-cyan transition-transform duration-200 group-hover:-translate-y-0.5" aria-hidden="true">
+                    ↓
+                  </span>
+                </a>
+              )}
+
+              {/* Github CTA */}
+              <a
+                href={identity.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-transparent border border-border text-text-secondary font-mono text-xs font-semibold tracking-[0.14em] uppercase transition-all duration-200 hover:text-text-primary hover:border-text-secondary hover:bg-card/40 focus-ring select-none"
+              >
+                <span>GITHUB</span>
+                <span className="text-text-muted transition-colors hover:text-text-primary" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+            </div>
 
           </div>
-        </motion.div>
 
+          {/* ========================================================
+              RIGHT COLUMN: Profile Photo & Developer Status Panel
+             ======================================================== */}
+          <div 
+            className="lg:col-span-5 w-full animate-hero-right"
+            style={{ animationDelay: '300ms' }}
+          >
+            <div className="relative group w-full max-w-sm mx-auto lg:max-w-none">
+              {/* Corner crosshairs for technical precision */}
+              <span className="absolute -top-1.5 -left-1.5 w-3 h-3 flex items-center justify-center text-[11px] text-cyan/70 font-mono select-none pointer-events-none leading-none z-10">+</span>
+              <span className="absolute -top-1.5 -right-1.5 w-3 h-3 flex items-center justify-center text-[11px] text-cyan/70 font-mono select-none pointer-events-none leading-none z-10">+</span>
+              <span className="absolute -bottom-1.5 -left-1.5 w-3 h-3 flex items-center justify-center text-[11px] text-cyan/70 font-mono select-none pointer-events-none leading-none z-10">+</span>
+              <span className="absolute -bottom-1.5 -right-1.5 w-3 h-3 flex items-center justify-center text-[11px] text-cyan/70 font-mono select-none pointer-events-none leading-none z-10">+</span>
+
+              {/* Identity Dossier Card */}
+              <div className="bg-card rounded-md border border-border p-2 transition-all duration-300 group-hover:border-cyan/40 group-hover:shadow-glow-cyan shadow-card flex flex-col">
+                
+                {/* Photo Area */}
+                {identity.profileImage && (
+                  <div className="w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/3] rounded-[4px] overflow-hidden relative mb-4 bg-[#0B1124] border border-border/50">
+                    <div className="absolute inset-0 bg-cyan/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
+                    <img 
+                      src={identity.profileImage} 
+                      alt={`Profile of ${identity.name}`}
+                      className="w-full h-full object-cover object-top filter grayscale-[25%] contrast-[1.1] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                    />
+                    {/* Overlay badge */}
+                    <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2 bg-background/95 backdrop-blur-md border border-border/80 px-2.5 py-1.5 rounded-sm font-mono text-[9px] sm:text-[10px] tracking-wider uppercase text-text-primary shadow-sm">
+                      <span className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
+                      <span>{identity.signatureMark} // VERIFIED</span>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="px-3 pb-3 sm:px-4 sm:pb-4 pt-1">
+                  {/* Panel Header */}
+                  <div className="flex items-center justify-between pb-4 border-b border-border/80">
+                    <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-[0.16em] uppercase text-text-primary select-none">
+                      <span className="w-1.5 h-1.5 bg-cyan rounded-full" aria-hidden="true" />
+                      <span>SYSTEM STATUS</span>
+                    </div>
+                    
+                    <div 
+                      className="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase text-green font-semibold select-none"
+                      title="System is active and operational"
+                    >
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green" />
+                      </span>
+                      <span>ONLINE</span>
+                    </div>
+                  </div>
+
+                  {/* Panel Metrics & Status Rows */}
+                  <div className="py-4 space-y-4">
+                    
+                    {/* Row 1: Current Focus */}
+                    <div className="flex flex-col gap-1">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-text-muted">
+                        CURRENT FOCUS
+                      </span>
+                      <span className="font-sans text-sm font-semibold text-text-primary">
+                        {SYSTEM_INFO.currentFocus}
+                      </span>
+                    </div>
+
+                    {/* Row 2: Stack */}
+                    <div className="flex flex-col gap-1 pt-1 border-t border-border-subtle">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-text-muted">
+                        STACK
+                      </span>
+                      <div className="flex items-center gap-2 font-mono text-xs text-cyan font-medium">
+                        <span>{SYSTEM_INFO.stack}</span>
+                      </div>
+                    </div>
+
+                    {/* Row 3: Build Status */}
+                    <div className="flex flex-col gap-1.5 pt-1 border-t border-border-subtle">
+                      <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.2em]">
+                        <span className="text-text-muted">BUILD STATUS</span>
+                        <span className="text-text-primary font-semibold">{SYSTEM_INFO.buildStatus}</span>
+                      </div>
+                      
+                      {/* Visual Progress Bar */}
+                      <div 
+                        className="w-full h-1 bg-background rounded-full overflow-hidden border border-border/50 mt-0.5"
+                        role="progressbar"
+                        aria-valuenow={92}
+                      >
+                        <div 
+                          className="h-full bg-gradient-to-r from-cyan to-blue rounded-full transition-all duration-500"
+                          style={{ width: SYSTEM_INFO.buildStatus }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Panel Footer: System Tag */}
+                  <div className="pt-3 border-t border-border/80 flex items-center justify-between font-mono text-[9px] text-text-muted tracking-wider select-none">
+                    <span>DEV.OS // KERNEL v2.6</span>
+                    <span className="text-cyan/70">MERN READY</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom Technical Accent Coordinate */}
+      <div 
+        className="absolute bottom-4 left-8 lg:left-16 hidden md:flex items-center gap-4 font-mono text-[10px] tracking-[0.18em] text-text-muted/60 uppercase select-none"
+        aria-hidden="true"
+      >
+        <span>LAT: {identity.coords.lat}</span>
+        <span className="text-border">|</span>
+        <span>LNG: {identity.coords.lng}</span>
+        <span className="text-border">|</span>
+        <span className="text-cyan/70">{identity.status.text}</span>
       </div>
     </section>
   );

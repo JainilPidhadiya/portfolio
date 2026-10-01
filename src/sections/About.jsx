@@ -1,42 +1,136 @@
-export function About({ id }) {
+import { SectionLabel } from '../components/ui/SectionLabel';
+
+import { identity } from '../data/identity';
+
+// Editable profile information data
+const PROFILE_DATA = {
+  intro: identity.tagline,
+  items: [
+    {
+      label: "FOCUS",
+      value: "Full Stack Development",
+    },
+    {
+      label: "CURRENTLY",
+      value: "Building + experimenting",
+    },
+    {
+      label: "BASED IN",
+      value: identity.location,
+    },
+    {
+      label: "INTERESTS",
+      value: "Web · AI · Systems · UI",
+    },
+  ],
+};
+
+export function About({ id = 'about' }) {
   return (
-    <section id={id} className="py-32 relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section
+      id={id}
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-border/70 scroll-mt-[72px] overflow-hidden"
+    >
+      {/* Subtle Technical Grid Overlay Continuation */}
+      <div 
+        className="absolute inset-0 bg-tech-grid opacity-30 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_10%,transparent_90%)]"
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 lg:gap-20 xl:gap-24 items-start">
           
-          <div className="space-y-8">
-            <h2 className="text-4xl md:text-6xl font-black leading-tight">
-              I build across <br />
-              the <span className="text-gradient">stack.</span>
+          {/* ========================================================
+              LEFT COLUMN (~45%): Section Label & Large Editorial H2
+             ======================================================== */}
+          <div className="lg:col-span-5 flex flex-col items-start text-left">
+            
+            {/* 1. Section Label */}
+            <div className="mb-6">
+              <SectionLabel 
+                label="02 / PROFILE" 
+                indicator="cyan"
+                className="text-cyan"
+              />
+            </div>
+
+            {/* 2. Main Editorial Heading (H2) */}
+            <h2 className="font-display font-black tracking-[-0.03em] text-text-primary text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.04] select-none break-words">
+              <span className="block">I DON'T JUST</span>
+              <span className="block text-text-secondary">WRITE CODE.</span>
+              <span className="block text-text-primary mt-1">
+                I BUILD SYSTEMS<span className="text-cyan">.</span>
+              </span>
             </h2>
-            <div className="w-20 h-1.5 bg-accent-strong rounded-full" />
-            <p className="text-xl md:text-2xl text-secondary font-medium leading-relaxed">
-              My approach isn't just about writing code. It's about designing <strong className="text-primary font-bold">logical structures</strong> that handle data efficiently and present it beautifully.
-            </p>
+
+            {/* 3. Small Cyan Accent Line */}
+            <div 
+              className="w-12 h-[2px] bg-cyan mt-6 lg:mt-8 rounded-full shadow-glow-cyan" 
+              aria-hidden="true" 
+            />
+
+            {/* Subtle engineering watermark (desktop) */}
+            <div className="hidden lg:block mt-12 font-mono text-[10px] tracking-[0.2em] text-text-muted/60 uppercase select-none">
+              <span>PHILOSOPHY // ARCHITECTURE OVER ACCIDENT</span>
+              <span className="block mt-2 text-cyan/30">{identity.signatureMark}</span>
+            </div>
+
           </div>
 
-          <div className="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden group">
-            {/* Decorative background flare */}
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent-purple/20 rounded-full blur-[80px] group-hover:bg-accent-primary/20 transition-colors duration-700" />
+          {/* ========================================================
+              RIGHT COLUMN (~55%): Introduction & Profile Information Rows
+             ======================================================== */}
+          <div className="lg:col-span-7 flex flex-col">
             
-            <h3 className="text-2xl font-bold mb-10 relative z-10">Academic Foundation</h3>
-            
-            <div className="space-y-10 relative z-10">
-              <div className="relative pl-8 before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:bg-accent-strong before:rounded-full before:shadow-[0_0_10px_rgba(14,165,233,0.5)]">
-                <span className="inline-block px-3 py-1 bg-surface-raised rounded-full text-xs font-bold text-accent-strong mb-3 tracking-widest uppercase border border-border">Expected 2027</span>
-                <h4 className="text-xl font-bold text-primary mb-1">Master of Computer Applications</h4>
-                <p className="text-secondary font-medium">Dr. D. Y. Patil Vidyapeeth, Pune</p>
-              </div>
+            {/* 4. Concise Introduction */}
+            <p className="font-sans text-lg sm:text-xl lg:text-[1.35rem] text-text-secondary leading-relaxed font-normal mb-12 sm:mb-16 max-w-2xl">
+              {PROFILE_DATA.intro}
+            </p>
 
-              <div className="relative pl-8 before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:bg-surface-raised before:border-2 before:border-border before:rounded-full">
-                <span className="inline-block px-3 py-1 bg-surface-raised rounded-full text-xs font-bold text-secondary mb-3 tracking-widest uppercase border border-border">2022 - 2025</span>
-                <h4 className="text-xl font-bold text-primary mb-1">Bachelor of Computer Applications</h4>
-                <p className="text-secondary font-medium mb-2">Veer Narmad South Gujarat University</p>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-success/10 text-success rounded-lg font-bold text-sm">
-                  <span>CGPA: 8.43</span>
+            {/* 5. Profile Information: Subtle Rows with Thin Borders */}
+            <div className="w-full flex flex-col border-t border-border/80">
+              {PROFILE_DATA.items.map((item, index) => (
+                <div
+                  key={item.label}
+                  className="group py-5 sm:py-6 border-b border-border/80 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-6 transition-colors duration-200 hover:border-cyan/30"
+                  style={{ animationDelay: `${index * 80}ms` }}
+                >
+                  {/* Monospace Uppercase Label */}
+                  <span className="font-mono text-xs text-text-muted tracking-[0.2em] uppercase select-none group-hover:text-cyan transition-colors">
+                    {item.label}
+                  </span>
+
+                  {/* Value */}
+                  <span className="font-sans text-base sm:text-lg font-semibold text-text-primary tracking-tight">
+                    {item.value}
+                  </span>
                 </div>
+              ))}
+            </div>
+
+            {/* 6. Resume Button & Technical Sub-label */}
+            <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+              
+              {identity.resumeUrl && (
+                <a
+                  href={identity.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-sm bg-card text-text-primary border border-cyan/60 font-mono text-xs font-bold tracking-[0.14em] uppercase transition-all duration-200 hover:border-cyan hover:shadow-glow-cyan hover:-translate-y-0.5 focus-ring select-none"
+                >
+                  <span>DOWNLOAD RESUME</span>
+                  <svg className="w-3.5 h-3.5 text-cyan transition-transform duration-200 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                </a>
+              )}
+
+              <div className="flex items-center gap-4 font-mono text-[10px] tracking-[0.16em] text-text-muted/70 uppercase select-none w-full sm:w-auto justify-between sm:justify-end">
+                <span>STATUS: {identity.status.text}</span>
+                <span className="text-cyan/70 hidden sm:inline">FULL STACK FOCUS</span>
               </div>
             </div>
+
           </div>
 
         </div>
