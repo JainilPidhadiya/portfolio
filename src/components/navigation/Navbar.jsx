@@ -6,9 +6,9 @@ import { useTheme } from '../../hooks/useTheme';
 import { identity } from '../../data/identity';
 
 const NAV_ITEMS = [
-  { id: 'work', label: 'WORK', href: '#work', number: '01' },
-  { id: 'about', label: 'ABOUT', href: '#about', number: '02' },
-  { id: 'stack', label: 'STACK', href: '#stack', number: '03' },
+  { id: 'about', label: 'ABOUT', href: '#about', number: '01' },
+  { id: 'stack', label: 'STACK', href: '#stack', number: '02' },
+  { id: 'work', label: 'WORK', href: '#work', number: '03' },
   { id: 'journey', label: 'JOURNEY', href: '#journey', number: '04' },
   { id: 'contact', label: 'CONTACT', href: '#contact', number: '05' },
 ];
@@ -18,7 +18,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const { theme, toggleTheme } = useTheme();
-  const activeSection = useActiveSection(['work', 'about', 'stack', 'journey', 'contact']);
+  const activeSection = useActiveSection(['intro', 'about', 'stack', 'work', 'journey', 'contact']);
 
   const menuButtonRef = useRef(null);
   const closeButtonRef = useRef(null);

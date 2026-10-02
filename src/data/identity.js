@@ -7,12 +7,12 @@
 
 export const identity = {
   name: "JAINIL PIDHADIYA",
-  role: "FULL STACK DEVELOPER",
+  role: "FULL STACK SOFTWARE ENGINEER",
   tagline: "I build thoughtful digital products across frontend, backend, and everything in between.",
   email: "jainilpidhadiya@gmail.com",
   github: "https://github.com/Jainil05",
   linkedin: "https://www.linkedin.com/in/jainil-pidhadiya-09332725b/",
-  
+
   // Production URL for SEO, Sitemap, and Canonical links (Replace with actual domain when deploying)
   siteUrl: "https://jainilpidhadiya.vercel.app",
 
@@ -27,7 +27,7 @@ export const identity = {
   },
 
   // Media
-  profileImage: "/jainil.png", // Add your photo to the public folder as profile.jpg
+  profileImage: "/jainil.png", // Upload a transparent cutout (no background) as jainil.png
   resumeUrl: "/Jainil_Pidhadiya_Resume.pdf", // Add your resume to the public folder
 
   // The subtle recurring signature mark used across the site

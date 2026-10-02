@@ -1,33 +1,33 @@
 :root {
   /* ==========================================================================
-     CORE DESIGN SYSTEM TOKENS - PREMIUM DEVELOPER PORTFOLIO
+     CORE DESIGN SYSTEM TOKENS - VERCEL AESTHETIC (DARK MODE)
      ========================================================================== */
 
-  /* Background Palette */
-  --color-bg-primary: #050816;
-  --color-bg-secondary: #080D1D;
-  --color-card: #0B1124;
-  --color-card-hover: #101A32;
+  /* Background Palette (Pitch Black / High Contrast) */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #0A0A0A;
+  --color-card: #000000;
+  --color-card-hover: #111111;
 
-  /* Typography Colors */
-  --color-text-primary: #F8FAFC;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
+  /* Typography Colors (Sharp Grays) */
+  --color-text-primary: #EDEDED;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
 
   /* Borders & Dividers */
-  --color-border: rgba(148, 163, 184, 0.14);
-  --color-border-subtle: rgba(148, 163, 184, 0.08);
-  --color-border-hover: rgba(56, 189, 248, 0.35);
+  --color-border: #333333;
+  --color-border-subtle: #1F1F1F;
+  --color-border-hover: rgba(0, 112, 243, 0.4);
 
-  /* Accents */
-  --color-cyan: #22D3EE;
-  --color-cyan-glow: rgba(34, 211, 238, 0.16);
-  --color-blue: #38BDF8;
-  --color-blue-glow: rgba(56, 189, 248, 0.18);
-  --color-violet: #8B5CF6;
-  --color-violet-glow: rgba(139, 92, 246, 0.16);
-  --color-green: #22C55E;
-  --color-green-glow: rgba(34, 197, 94, 0.16);
+  /* Accents (Magenta/Purple - We reuse the cyan variable name so we don't break existing classes) */
+  --color-cyan: #0070F3; /* Vercel Blue Accent */
+  --color-cyan-glow: rgba(0, 112, 243, 0.15);
+  --color-blue: #0070F3; /* Vercel Blue */
+  --color-blue-glow: rgba(0, 112, 243, 0.15);
+  --color-violet: #7928CA; /* Vercel Purple */
+  --color-violet-glow: rgba(121, 40, 202, 0.15);
+  --color-green: #17C964;
+  --color-green-glow: rgba(23, 201, 100, 0.15);
 
   /* Layout Constraints */
   --max-width-container: 1280px;
@@ -36,9 +36,9 @@
   --padding-mobile: 16px;
 
   /* Typography Scale */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, monospace;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, monospace;
 
   --font-size-xs: 0.75rem;     /* 12px */
   --font-size-sm: 0.875rem;    /* 14px */
@@ -51,55 +51,10 @@
   --font-size-5xl: 3.75rem;    /* 60px */
   --font-size-display: clamp(2.5rem, 6vw, 4.5rem);
 
-  /* Elevation & Subtle Glows (Controlled, never overdone) */
-  --glow-cyan-sm: 0 0 16px -4px rgba(34, 211, 238, 0.2);
-  --glow-blue-sm: 0 0 18px -4px rgba(56, 189, 248, 0.22);
-  --glow-card: 0 10px 30px -10px rgba(5, 8, 22, 0.7);
-
-  /* Backwards Compatibility Aliases */
-  --color-paper: var(--color-bg-primary);
-  --color-ink: var(--color-text-primary);
-  --color-muted: var(--color-text-secondary);
-  --color-dark: var(--color-bg-primary);
-  --color-accent: var(--color-cyan);
-  --color-border-light: var(--color-border);
-  --color-border-dark: var(--color-border);
-
-  /* Button Text Contrast */
-  --color-btn-text: #050816;
-}
-
-[data-theme='light'] {
-  /* Background Palette: Enhanced contrast between canvas and cards */
-  --color-bg-primary: #EBE8E0; /* Slightly deeper warm gray so white cards pop clearly */
-  --color-bg-secondary: #E3DFD5;
-  --color-card: #FFFFFF; /* Pure white for maximum clarity */
-  --color-card-hover: #F9F8F6;
-
-  /* Typography Colors: Sharper, highly legible text */
-  --color-text-primary: #111111; /* Near pitch black for max legibility */
-  --color-text-secondary: #404040; /* Dark gray for secondary, easily readable */
-  --color-text-muted: #666666; /* Much darker muted text for accessibility */
-
-  /* Borders & Dividers: Stronger lines for clear visual boundaries */
-  --color-border: rgba(0, 0, 0, 0.18);
-  --color-border-subtle: rgba(0, 0, 0, 0.08);
-  --color-border-hover: rgba(217, 45, 32, 0.6);
-
-  /* Accents: Bold, high-contrast Vermilion Red/Orange for maximum visibility */
-  --color-cyan: #D92D20; /* Deep Vermilion for stark contrast against white */
-  --color-cyan-glow: rgba(217, 45, 32, 0.15);
-  --color-blue: #1D4ED8; /* Deep Royal Blue */
-  --color-blue-glow: rgba(29, 78, 216, 0.15);
-  --color-violet: #7E22CE; /* Deep Purple */
-  --color-violet-glow: rgba(126, 34, 206, 0.15);
-  --color-green: #15803D; /* Deep Green */
-  --color-green-glow: rgba(21, 128, 61, 0.15);
-
-  /* Elevation & Subtle Glows: Stronger drop shadows to lift elements off the page */
-  --glow-cyan-sm: 0 4px 12px -2px rgba(217, 45, 32, 0.3);
-  --glow-blue-sm: 0 4px 12px -2px rgba(29, 78, 216, 0.3);
-  --glow-card: 0 8px 24px -6px rgba(0, 0, 0, 0.12);
+  /* Elevation & Subtle Glows */
+  --glow-cyan-sm: 0 4px 14px 0 rgba(0, 112, 243, 0.39);
+  --glow-blue-sm: 0 4px 14px 0 rgba(0, 112, 243, 0.39);
+  --glow-card: 0 0 0 1px #333333; /* Flat borders rather than huge shadows for dark mode */
 
   /* Backwards Compatibility Aliases */
   --color-paper: var(--color-bg-primary);
@@ -114,3 +69,47 @@
   --color-btn-text: #FFFFFF;
 }
 
+[data-theme='light'] {
+  /* Background Palette (Pure Whites / High Contrast) */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #FAFAFA;
+  --color-card: #FFFFFF;
+  --color-card-hover: #FAFAFA;
+
+  /* Typography Colors (Sharp Pitch Blacks) */
+  --color-text-primary: #000000;
+  --color-text-secondary: #666666;
+  --color-text-muted: #888888;
+
+  /* Borders & Dividers */
+  --color-border: #EAEAEA;
+  --color-border-subtle: #F5F5F5;
+  --color-border-hover: rgba(0, 112, 243, 0.4);
+
+  /* Accents (Magenta/Purple) */
+  --color-cyan: #0070F3; /* Vercel Blue Accent */
+  --color-cyan-glow: rgba(0, 112, 243, 0.12);
+  --color-blue: #0070F3;
+  --color-blue-glow: rgba(0, 112, 243, 0.12);
+  --color-violet: #7928CA;
+  --color-violet-glow: rgba(121, 40, 202, 0.12);
+  --color-green: #17C964;
+  --color-green-glow: rgba(23, 201, 100, 0.12);
+
+  /* Elevation & Subtle Glows */
+  --glow-cyan-sm: 0 4px 14px 0 rgba(0, 112, 243, 0.39);
+  --glow-blue-sm: 0 4px 14px 0 rgba(0, 112, 243, 0.39);
+  --glow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* Backwards Compatibility Aliases */
+  --color-paper: var(--color-bg-primary);
+  --color-ink: var(--color-text-primary);
+  --color-muted: var(--color-text-secondary);
+  --color-dark: var(--color-bg-primary);
+  --color-accent: var(--color-cyan);
+  --color-border-light: var(--color-border);
+  --color-border-dark: var(--color-border);
+
+  /* Button Text Contrast */
+  --color-btn-text: #FFFFFF;
+}

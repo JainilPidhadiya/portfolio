@@ -8,7 +8,7 @@ const PROFILE_DATA = {
   items: [
     {
       label: "FOCUS",
-      value: "Full Stack Development",
+      value: "Full Stack Software Engineering",
     },
     {
       label: "CURRENTLY",
@@ -29,7 +29,7 @@ export function About({ id = 'about' }) {
   return (
     <section
       id={id}
-      className="relative py-24 sm:py-32 lg:py-40 border-t border-border/70 scroll-mt-[72px] overflow-hidden"
+      className="relative py-16 lg:py-24 border-t border-border/70 scroll-mt-[72px] overflow-hidden"
     >
       {/* Subtle Technical Grid Overlay Continuation */}
       <div 
@@ -69,11 +69,6 @@ export function About({ id = 'about' }) {
               aria-hidden="true" 
             />
 
-            {/* Subtle engineering watermark (desktop) */}
-            <div className="hidden lg:block mt-12 font-mono text-[10px] tracking-[0.2em] text-text-muted/60 uppercase select-none">
-              <span>PHILOSOPHY // ARCHITECTURE OVER ACCIDENT</span>
-              <span className="block mt-2 text-cyan/30">{identity.signatureMark}</span>
-            </div>
 
           </div>
 

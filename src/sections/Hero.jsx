@@ -1,12 +1,13 @@
 import { useCallback } from 'react';
 import { SectionLabel } from '../components/ui/SectionLabel';
 import { useReducedMotion } from '../hooks/useReducedMotion';
+import { useTheme } from '../hooks/useTheme';
 
 import { identity } from '../data/identity';
 
 // System status data - easily editable
 const SYSTEM_INFO = {
-  currentFocus: "Full Stack Development",
+  currentFocus: "Full Stack Software Engineering",
   stack: "React · Node · MongoDB",
   buildStatus: "92%",
   asciiProgress: "████████████░",
@@ -14,6 +15,7 @@ const SYSTEM_INFO = {
 
 export function Hero({ id = 'intro' }) {
   const prefersReducedMotion = useReducedMotion();
+  const { theme } = useTheme();
 
   // Smooth scroll handler for CTA
   const handleScrollToWork = useCallback((e) => {
@@ -38,7 +40,7 @@ export function Hero({ id = 'intro' }) {
   return (
     <section
       id={id}
-      className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center overflow-hidden pt-[104px] pb-16 lg:pt-[120px] lg:pb-24 border-b border-border/60"
+      className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center overflow-hidden pt-[104px] pb-12 lg:pt-[120px] lg:pb-16 border-b border-border/60"
     >
       {/* Background: Subtle Technical Grid with Edge Mask */}
       <div 
@@ -56,15 +58,6 @@ export function Hero({ id = 'intro' }) {
         aria-hidden="true" 
       />
 
-      {/* Top Subtle Technical Corner Tag (Desktop) */}
-      <div 
-        className="absolute top-24 right-8 lg:right-16 hidden md:flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-text-muted/70 uppercase select-none"
-        aria-hidden="true"
-      >
-        <span>{identity.signatureMark}</span>
-        <span className="text-cyan/50">//</span>
-        <span>INITIALIZE</span>
-      </div>
 
       <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-center">
@@ -92,7 +85,7 @@ export function Hero({ id = 'intro' }) {
               style={{ animationDelay: '120ms' }}
             >
               <p className="font-mono text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-text-muted">
-                FULL STACK DEVELOPER <span className="text-cyan/60">/</span> PRODUCT BUILDER
+                FULL STACK SOFTWARE ENGINEER <span className="text-cyan/60">/</span> PRODUCT BUILDER
               </p>
             </div>
 
@@ -193,18 +186,15 @@ export function Hero({ id = 'intro' }) {
                 
                 {/* Photo Area */}
                 {identity.profileImage && (
-                  <div className="w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/3] rounded-[4px] overflow-hidden relative mb-4 bg-[#0B1124] border border-border/50">
-                    <div className="absolute inset-0 bg-cyan/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
+                  <div className={`w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/3] rounded-[4px] overflow-hidden relative mb-4 border border-border/50 transition-colors duration-700 ${theme === 'light' ? 'bg-[#FFFFFF]' : 'bg-black'}`}>
+                    <div className="absolute inset-0 bg-cyan/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10 pointer-events-none" />
+                    
+                    {/* Transparent Profile Image */}
                     <img 
                       src={identity.profileImage} 
                       alt={`Profile of ${identity.name}`}
-                      className="w-full h-full object-cover object-top filter grayscale-[25%] contrast-[1.1] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-contain object-bottom pt-2 filter grayscale-[25%] contrast-[1.1] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     />
-                    {/* Overlay badge */}
-                    <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2 bg-background/95 backdrop-blur-md border border-border/80 px-2.5 py-1.5 rounded-sm font-mono text-[9px] sm:text-[10px] tracking-wider uppercase text-text-primary shadow-sm">
-                      <span className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
-                      <span>{identity.signatureMark} // VERIFIED</span>
-                    </div>
                   </div>
                 )}
                 
@@ -251,31 +241,7 @@ export function Hero({ id = 'intro' }) {
                       </div>
                     </div>
 
-                    {/* Row 3: Build Status */}
-                    <div className="flex flex-col gap-1.5 pt-1 border-t border-border-subtle">
-                      <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.2em]">
-                        <span className="text-text-muted">BUILD STATUS</span>
-                        <span className="text-text-primary font-semibold">{SYSTEM_INFO.buildStatus}</span>
-                      </div>
-                      
-                      {/* Visual Progress Bar */}
-                      <div 
-                        className="w-full h-1 bg-background rounded-full overflow-hidden border border-border/50 mt-0.5"
-                        role="progressbar"
-                        aria-valuenow={92}
-                      >
-                        <div 
-                          className="h-full bg-gradient-to-r from-cyan to-blue rounded-full transition-all duration-500"
-                          style={{ width: SYSTEM_INFO.buildStatus }}
-                        />
-                      </div>
                     </div>
-                  </div>
-
-                  {/* Panel Footer: System Tag */}
-                  <div className="pt-3 border-t border-border/80 flex items-center justify-between font-mono text-[9px] text-text-muted tracking-wider select-none">
-                    <span>DEV.OS // KERNEL v2.6</span>
-                    <span className="text-cyan/70">MERN READY</span>
                   </div>
                 </div>
 
@@ -284,19 +250,6 @@ export function Hero({ id = 'intro' }) {
           </div>
 
         </div>
-      </div>
-
-      {/* Bottom Technical Accent Coordinate */}
-      <div 
-        className="absolute bottom-4 left-8 lg:left-16 hidden md:flex items-center gap-4 font-mono text-[10px] tracking-[0.18em] text-text-muted/60 uppercase select-none"
-        aria-hidden="true"
-      >
-        <span>LAT: {identity.coords.lat}</span>
-        <span className="text-border">|</span>
-        <span>LNG: {identity.coords.lng}</span>
-        <span className="text-border">|</span>
-        <span className="text-cyan/70">{identity.status.text}</span>
-      </div>
     </section>
   );
 }

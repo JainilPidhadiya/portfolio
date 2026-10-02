@@ -60,21 +60,22 @@ function BackToTop({ prefersReducedMotion }) {
       onClick={handleClick}
       aria-label="Back to top"
       className={cn(
-        'group inline-flex items-center gap-2',
-        'font-mono text-[11px] font-medium tracking-[0.16em] uppercase',
-        'text-text-muted hover:text-cyan',
-        'transition-all duration-300 focus-ring rounded-sm py-1',
-        // Visibility — opacity only (no translate to keep layout stable)
-        visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+        'fixed bottom-6 left-6 z-50 sm:bottom-8 sm:left-8',
+        'group flex items-center gap-2 px-4 py-2.5',
+        'bg-background-secondary/90 backdrop-blur-md border border-border/80 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.4)]',
+        'font-mono text-[10px] font-bold tracking-[0.16em] uppercase select-none',
+        'text-text-secondary hover:text-cyan hover:border-cyan/50 hover:shadow-glow-cyan hover:-translate-y-1',
+        'transition-all duration-300 focus-ring',
+        visible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none',
       )}
     >
       <span
         aria-hidden="true"
-        className="text-base leading-none group-hover:-translate-y-0.5 transition-transform duration-200"
+        className="text-sm leading-none group-hover:animate-bounce text-cyan"
       >
         ↑
       </span>
-      <span>BACK TO TOP</span>
+      <span>TOP</span>
     </button>
   );
 }

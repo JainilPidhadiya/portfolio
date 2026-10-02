@@ -25,7 +25,7 @@ export function SceneIndicator() {
           href={identity.resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-2 px-3.5 py-2 rounded-sm border border-cyan/30 bg-[#0B1124]/85 backdrop-blur-md shadow-lg text-cyan hover:bg-[#0B1124] hover:border-cyan/70 transition-all duration-300 hover:shadow-glow-cyan focus-ring"
+          className="group flex items-center gap-2 px-3.5 py-2 rounded-sm border border-cyan/30 bg-card/90 backdrop-blur-md shadow-lg text-cyan hover:bg-card hover:border-cyan/70 transition-all duration-300 hover:shadow-glow-cyan focus-ring"
           aria-label="Download Resume"
         >
           <span>RESUME</span>
@@ -36,7 +36,7 @@ export function SceneIndicator() {
       )}
 
       {/* Scene Indicator Pill */}
-      <div className="flex items-center gap-3 px-3.5 py-2 rounded-sm border border-border bg-[#0B1124]/85 backdrop-blur-md shadow-lg">
+      <div className="flex items-center gap-3 px-3.5 py-2 rounded-sm border border-border bg-card/90 backdrop-blur-md shadow-lg">
         <span className="text-cyan font-bold">
           {String(displayIndex).padStart(2, '0')} / {String(scenes.length).padStart(2, '0')}
         </span>
